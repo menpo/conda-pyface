@@ -1,0 +1,40 @@
+{% set version = "5.1.0" %}
+
+package:
+  name: pyface
+  version: "5.1.0"
+
+source:
+  fn: pyface-{{ version }}.tar.bz2
+  url: https://pypi.io/packages/source/p/pyface/pyface-{{ version }}.tar.bz2
+  md5: b858301ef92269c3e4de82d90cba3020
+
+build:
+  number: 0
+  script: python setup.py install --single-version-externally-managed --record record.txt
+
+requirements:
+  build:
+    - python
+    - setuptools
+    - pyqt  # pyface requires pyqt, pyside or wxpython
+    - traits
+    - pygments
+  run:
+    - python
+    - traits
+    - pyqt
+    - pygments
+
+test:
+  imports:
+    - pyface
+
+about:
+  home: http://docs.enthought.com/pyface/
+  license: BSD 3-clause
+  summary: pyface - traits-capable windowing framework
+
+extra:
+  recipe-maintainers:
+    - grlee77
